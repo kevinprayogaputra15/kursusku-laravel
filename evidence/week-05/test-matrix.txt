@@ -1,0 +1,21 @@
+KURSUSKU - TEST MATRIX PERTEMUAN 5
+Form Pendaftaran (registration.php -> process-registration.php)
+==================================================================
+
+No  Test        Langkah                              Status   Catatan
+--  ----------  -----------------------------------  -------  ------------------------------------------
+1   Load form   Buka registration.php                 [ ]      Form tampil tanpa error
+2   Required    Kirim form kosong                     [ ]      Browser menahan field wajib
+3   Email       Isi email "abc"                       [ ]      Browser meminta format email
+4   Nama pendek Isi nama 2 karakter                   [ ]      minlength mencegah submit
+5   GET         Ubah method ke GET, submit data       [ ]      Parameter terlihat di URL
+6   POST        Kembalikan ke POST, submit             [ ]      Query data tidak tampil di URL
+7   Radio       Pilih Mahasiswa/Umum                  [ ]      Nilai muncul di ringkasan
+8   Checkbox    Pilih dua minat                        [ ]      Dua nilai tergabung (implode)
+9   Textarea    Isi catatan singkat                    [ ]      Isi ditampilkan kembali dengan aman
+10  Hidden      Submit form                             [ ]      Sumber "week-05" diterima
+11  Mobile      Uji lebar sekitar 360px                [ ]      Form satu kolom, tidak overflow
+12  Navigasi    Beranda -> Katalog -> Daftar            [ ]      Semua link menuju tujuan benar
+
+Isi kolom Status dengan "Lulus" atau "Perlu Perbaikan" setelah pengujian manual,
+lalu tambahkan satu kalimat catatan pada kolom Catatan bila diperlukan.

@@ -1,0 +1,21 @@
+KURSUSKU - LOCAL DEVELOPMENT vs HOSTING / PRODUCTION
+=====================================================
+
+Aspek           Local Development                  Hosting / Production
+--------------  ---------------------------------  ---------------------------------------------
+URL             kursusku-prototype.test / localhost Domain/subdomain publik
+Lokasi file     Laptop mahasiswa                    Server hosting
+Database        MySQL lokal Laragon (jika dipakai)  Database server hosting
+Environment     Development                         Production
+HTTPS/SSL       Tidak selalu tersedia                Seharusnya HTTPS aktif
+Debug           Boleh membantu proses belajar         Jangan menampilkan detail error sensitif
+Secret          Disimpan lokal, tidak dibagikan       Disimpan aman sebagai konfigurasi server
+Document root   Folder proyek di Laragon               Folder web yang ditentukan provider
+
+Catatan proyek KursusKu:
+- Semua path file pada prototype ini relatif (assets/css/style.css, assets/images/...),
+  bukan path absolut ke laptop, sehingga siap dipindahkan ke hosting.
+- Tidak ada password atau API key ditulis di source code proyek ini.
+- Data pada form pendaftaran hanya data latihan (email @example.test), bukan data pribadi nyata.
+- Upload ke hosting publik belum dilakukan pada Pertemuan 5; yang wajib dikuasai baru
+  pemahaman konsepnya.

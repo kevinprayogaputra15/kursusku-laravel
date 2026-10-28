@@ -1,0 +1,17 @@
+AI USAGE LOG (isi jika memakai AI)
+Prompt / masalah | Saran AI | Diterima / ditolak | Alasan + hasil test
+...              | ...      | ...                | ...
+
+REFLEKSI SINGKAT (tulis dengan bahasa Anda sendiri)
+1. Bagian paling saya pahami:
+2. Bagian yang masih membingungkan:
+3. Satu bug yang saya temukan:
+4. Cara saya memperbaikinya:
+5. Perbedaan branching dan looping menurut saya:
+
+PENJELASAN YANG HARUS DIKUASAI
+- Radio vs checkbox; mengapa checkbox memakai []
+- Mengapa foreach; mengapa diskon memakai branching (if/elseif) dan label memakai switch
+- Urutan total: biaya satuan -> jumlah paket -> subtotal -> % diskon -> nilai diskon -> total akhir
+- Fungsi ?? pada input POST; fungsi htmlspecialchars()
+- Mengapa belum memakai database
