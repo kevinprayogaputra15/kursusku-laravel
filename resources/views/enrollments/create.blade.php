@@ -44,12 +44,14 @@
                                 required>
                             <option value="">-- pilih kursus --</option>
 
-                            @foreach ($courses as $id => $course)
-                                <option value="{{ $id }}"
-                                    @selected(old('course_id') == $id)>
-                                    {{ $course['name'] }}
+                            @forelse ($courses as $course)
+                                <option value="{{ $course->id }}"
+                                    @selected(old('course_id') == $course->id)>
+                                    {{ $course->code }} — {{ $course->name }}
                                 </option>
-                            @endforeach
+                            @empty
+                                <option value="" disabled>Belum ada kursus di database.</option>
+                            @endforelse
                         </select>
                         @error('course_id')
                             <div class="invalid-feedback">{{ $message }}</div>

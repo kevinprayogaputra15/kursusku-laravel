@@ -1,17 +1,15 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/pendaftaran', function () {
-    $courses = [
-        1 => ['name' => 'Web Dasar'],
-        2 => ['name' => 'PHP Dasar'],
-        3 => ['name' => 'Laravel Dasar'],
-    ];
+    $courses = Course::query()->orderBy('name')->get();
 
     return view('enrollments.create', compact('courses'));
 })->name('enrollments.create');
@@ -24,27 +22,22 @@ Route::post('/pendaftaran/preview', function (Request $request) {
     ]);
 
     return back()
-        ->with('success', 'Form lolos validasi. Database akan ditambahkan pada pertemuan berikutnya.')
+        ->with('success', 'Form lolos validasi. Database pendaftaran akan ditambahkan pada pertemuan berikutnya.')
         ->withInput();
 })->name('enrollments.preview');
 
-Route::get('/courses/{course}/availability', function (int $course) {
-    $availability = [
-        1 => [
-            'course' => 'Web Dasar',
-            'remaining' => 12,
-        ],
-        2 => [
-            'course' => 'PHP Dasar',
-            'remaining' => 8,
-        ],
-        3 => [
-            'course' => 'Laravel Dasar',
-            'remaining' => 4,
-        ],
-    ];
+Route::resource('courses', CourseController::class);
 
-    abort_unless(isset($availability[$course]), 404);
-
-    return response()->json($availability[$course]);
+Route::get('/courses/{course}/availability', function (Course $course) {
+    return response()->json([
+        'id' => $course->id,
+        'code' => $course->code,
+        'name' => $course->name,
+        'quota' => $course->quota,
+        'status' => $course->status,
+        // Tetap kompatibel dengan Ajax pertemuan 9.
+        // Belum ada Enrollment, jadi sisa kursi = kuota.
+        'course' => $course->name,
+        'remaining' => $course->quota,
+    ]);
 })->name('courses.availability');
