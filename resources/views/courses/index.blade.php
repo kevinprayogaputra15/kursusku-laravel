@@ -14,11 +14,7 @@
         </a>
     </div>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+    {{-- Flash message success sudah ditampilkan oleh layouts/app.blade.php --}}
 
     <div class="card">
         <div class="card-body p-0">
@@ -32,6 +28,7 @@
                             <th>Kuota</th>
                             <th>Mulai</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,10 +40,25 @@
                             <td>{{ $course->quota }}</td>
                             <td>{{ $course->start_date->format('d/m/Y') }}</td>
                             <td>{{ ucfirst($course->status) }}</td>
+                            <td>
+                                <div class="d-flex gap-1 flex-wrap">
+                                    <a href="{{ route('courses.show', $course) }}"
+                                       class="btn btn-sm btn-outline-primary">Detail</a>
+                                    <a href="{{ route('courses.edit', $course) }}"
+                                       class="btn btn-sm btn-outline-warning">Edit</a>
+                                    <form method="POST"
+                                          action="{{ route('courses.destroy', $course) }}"
+                                          onsubmit="return confirm('Hapus kursus ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center py-4 text-muted">
+                            <td colspan="7" class="text-center py-4 text-muted">
                                 Belum ada data kursus.
                             </td>
                         </tr>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
-use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
@@ -19,41 +20,37 @@ class CourseController extends Controller
         return view('courses.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        $data = $request->validate([
-            'code' => ['required', 'max:20', 'unique:courses,code'],
-            'name' => ['required', 'max:120'],
-            'description' => ['nullable', 'string'],
-            'fee' => ['required', 'integer', 'min:0'],
-            'quota' => ['required', 'integer', 'min:1', 'max:500'],
-            'start_date' => ['required', 'date'],
-            'status' => ['required', 'in:draft,open,closed'],
-        ]);
-
-        Course::create($data);
+        Course::create($request->validated());
 
         return to_route('courses.index')
             ->with('success', 'Kursus berhasil ditambahkan.');
     }
 
-    public function show(string $course)
+    public function show(Course $course)
     {
-        abort(404);
+        return view('courses.show', compact('course'));
     }
 
-    public function edit(string $course)
+    public function edit(Course $course)
     {
-        abort(404);
+        return view('courses.edit', compact('course'));
     }
 
-    public function update(Request $request, string $course)
+    public function update(UpdateCourseRequest $request, Course $course)
     {
-        abort(404);
+        $course->update($request->validated());
+
+        return to_route('courses.show', $course)
+            ->with('success', 'Kursus berhasil diperbarui.');
     }
 
-    public function destroy(string $course)
+    public function destroy(Course $course)
     {
-        abort(404);
+        $course->delete();
+
+        return to_route('courses.index')
+            ->with('success', 'Kursus berhasil dihapus.');
     }
 }

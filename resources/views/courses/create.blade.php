@@ -6,61 +6,75 @@
 <div class="container py-4" style="max-width: 760px">
     <h1 class="h3 mb-3">Tambah Kursus</h1>
 
-    <form method="POST" action="{{ route('courses.store') }}" class="card card-body">
+    <form method="POST" action="{{ route('courses.store') }}" class="card card-body" novalidate>
         @csrf
 
         <div class="mb-3">
             <label class="form-label" for="code">Kode Kursus</label>
-            <input class="form-control" id="code" name="code"
+            <input class="form-control @error('code') is-invalid @enderror" id="code" name="code"
                    value="{{ old('code') }}" required maxlength="20">
-            @error('code') <div class="text-danger small">{{ $message }}</div> @enderror
+            @error('code')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="name">Nama Kursus</label>
-            <input class="form-control" id="name" name="name"
+            <input class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                    value="{{ old('name') }}" required maxlength="120">
-            @error('name') <div class="text-danger small">{{ $message }}</div> @enderror
+            @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="description">Deskripsi</label>
-            <textarea class="form-control" id="description" name="description" rows="3">{{ old('description') }}</textarea>
-            @error('description') <div class="text-danger small">{{ $message }}</div> @enderror
+            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{ old('description') }}</textarea>
+            @error('description')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label class="form-label" for="fee">Biaya</label>
-                <input class="form-control" id="fee" type="number" name="fee"
+                <input class="form-control @error('fee') is-invalid @enderror" id="fee" type="number" name="fee"
                        value="{{ old('fee', 0) }}" min="0" required>
-                @error('fee') <div class="text-danger small">{{ $message }}</div> @enderror
+                @error('fee')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
             </div>
 
             <div class="col-md-6 mb-3">
                 <label class="form-label" for="quota">Kuota</label>
-                <input class="form-control" id="quota" type="number" name="quota"
+                <input class="form-control @error('quota') is-invalid @enderror" id="quota" type="number" name="quota"
                        value="{{ old('quota', 20) }}" min="1" max="500" required>
-                @error('quota') <div class="text-danger small">{{ $message }}</div> @enderror
+                @error('quota')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label class="form-label" for="start_date">Tanggal Mulai</label>
-                <input class="form-control" id="start_date" type="date" name="start_date"
+                <input class="form-control @error('start_date') is-invalid @enderror" id="start_date" type="date" name="start_date"
                        value="{{ old('start_date') }}" required>
-                @error('start_date') <div class="text-danger small">{{ $message }}</div> @enderror
+                @error('start_date')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
             </div>
 
             <div class="col-md-6 mb-3">
                 <label class="form-label" for="status">Status</label>
-                <select class="form-select" id="status" name="status" required>
+                <select class="form-select @error('status') is-invalid @enderror" id="status" name="status" required>
                     <option value="draft" @selected(old('status') === 'draft')>Draft</option>
                     <option value="open" @selected(old('status') === 'open')>Open</option>
                     <option value="closed" @selected(old('status') === 'closed')>Closed</option>
                 </select>
-                @error('status') <div class="text-danger small">{{ $message }}</div> @enderror
+                @error('status')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
             </div>
         </div>
 
