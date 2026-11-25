@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Enrollment;
+use App\Models\Participant;
+
 class HomeController extends Controller
 {
     public function index()
@@ -36,6 +40,14 @@ class HomeController extends Controller
             ],
         ];
 
-        return view('home', compact('siteName', 'featured'));
+        // Dashboard count (milestone pertemuan 13)
+        $stats = [
+            'courses' => Course::count(),
+            'open_courses' => Course::where('status', 'open')->count(),
+            'participants' => Participant::count(),
+            'enrollments' => Enrollment::count(),
+        ];
+
+        return view('home', compact('siteName', 'featured', 'stats'));
     }
 }

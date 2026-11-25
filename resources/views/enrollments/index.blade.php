@@ -30,7 +30,7 @@
                         <td>{{ $enrollment->participant->name }}</td>
                         <td>{{ $enrollment->course->name }}</td>
                         <td>{{ $enrollment->course->start_date->format('d/m/Y') }}</td>
-                        <td>{{ $enrollment->status }}</td>
+                        <td><span class="kk-status kk-status-{{ $enrollment->status }}">{{ $enrollment->status }}</span></td>
                     </tr>
                 @empty
                     <tr>

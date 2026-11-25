@@ -38,7 +38,7 @@
                 <dd class="col-sm-9">{{ $course->start_date?->format('d-m-Y') }}</dd>
 
                 <dt class="col-sm-3">Status</dt>
-                <dd class="col-sm-9">{{ ucfirst($course->status) }}</dd>
+                <dd class="col-sm-9"><span class="kk-status kk-status-{{ $course->status }}">{{ ucfirst($course->status) }}</span></dd>
             </dl>
         </div>
     </div>

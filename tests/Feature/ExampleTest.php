@@ -2,11 +2,15 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    // Beranda kini menampilkan hitungan dari database (dashboard count),
+    // sehingga tabel perlu tersedia saat tes dijalankan.
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      */

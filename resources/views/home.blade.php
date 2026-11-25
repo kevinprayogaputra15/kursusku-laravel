@@ -27,6 +27,27 @@
     </div>
 </section>
 
+<section class="pb-4">
+    <h2 class="h4 fw-bold mb-3">Ringkasan Data</h2>
+    <div class="row g-3">
+        @foreach ([
+            ['Total Course', $stats['courses']],
+            ['Course Open', $stats['open_courses']],
+            ['Participant', $stats['participants']],
+            ['Enrollment', $stats['enrollments']],
+        ] as [$label, $value])
+            <div class="col-6 col-lg-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="text-secondary small">{{ $label }}</div>
+                        <div class="display-6 fw-bold">{{ $value }}</div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</section>
+
 <section class="pb-5">
     <h2 class="h4 fw-bold mb-3">Program Belajar Unggulan</h2>
     <div class="row g-3">

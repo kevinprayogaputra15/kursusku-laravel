@@ -1,9 +1,9 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 /* =========================================================
-   KursusKu — tema hitam minimalis (terinspirasi settigation.com/work)
-   Prinsip: latar hitam murni, tipografi besar & rapat, garis tipis
-   sebagai pemisah, tombol pil putih. Tanpa bayangan, tanpa gradien.
+   KursusKu — tema hitam modern (v2)
+   Prinsip: latar hitam, tipografi besar & rapat, garis tipis sebagai pemisah,
+   aksen gradien violet-cyan, cahaya (glow) halus, kartu kaca, status berwarna.
    ========================================================= */
 
 :root {
@@ -16,6 +16,11 @@
     --kk-line-strong: rgba(255, 255, 255, 0.32);
     --kk-danger: #ff6b6b;
     --kk-ok: #5ee08a;
+    --kk-accent: #a78bfa;
+    --kk-accent-2: #22d3ee;
+    --kk-grad: linear-gradient(135deg, #a78bfa 0%, #60a5fa 55%, #22d3ee 100%);
+    --kk-glow: rgba(139, 92, 246, 0.35);
+    --kk-warn: #fbbf24;
     --kk-radius: 20px;
     --kk-pill: 999px;
     --kk-font: 'Inter', 'Helvetica Neue', Arial, system-ui, sans-serif;
@@ -30,7 +35,7 @@
     --bs-emphasis-color: #fff;
     --bs-border-color: var(--kk-line);
     --bs-link-color: #fff;
-    --bs-link-hover-color: #fff;
+    --bs-link-hover-color: var(--kk-accent-2);
     --bs-heading-color: #fff;
     --bs-code-color: #fff;
     color-scheme: dark;
@@ -157,7 +162,8 @@ h2.h4 { font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -0.035em; }
     --bs-btn-font-weight: 500;
     --bs-btn-focus-shadow-rgb: 255, 255, 255;
     letter-spacing: -0.01em;
-    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+                transform 0.15s ease, box-shadow 0.2s ease, filter 0.15s ease;
 }
 
 .btn-sm {
@@ -169,14 +175,24 @@ h2.h4 { font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -0.035em; }
 .btn-primary,
 .btn-success {
     --bs-btn-color: #000;
-    --bs-btn-bg: #fff;
-    --bs-btn-border-color: #fff;
+    --bs-btn-bg: #a78bfa;
+    --bs-btn-border-color: transparent;
     --bs-btn-hover-color: #000;
-    --bs-btn-hover-bg: #d6d6d6;
-    --bs-btn-hover-border-color: #d6d6d6;
+    --bs-btn-hover-bg: #a78bfa;
+    --bs-btn-hover-border-color: transparent;
     --bs-btn-active-color: #000;
-    --bs-btn-active-bg: #bdbdbd;
-    --bs-btn-active-border-color: #bdbdbd;
+    --bs-btn-active-bg: #8b5cf6;
+    --bs-btn-active-border-color: transparent;
+    --bs-btn-font-weight: 600;
+    background-image: var(--kk-grad);
+    box-shadow: 0 6px 24px -8px var(--kk-glow);
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px -8px var(--kk-glow);
 }
 
 .btn-outline-primary,
@@ -191,6 +207,9 @@ h2.h4 { font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -0.035em; }
     --bs-btn-active-bg: #d6d6d6;
     --bs-btn-active-border-color: #d6d6d6;
 }
+
+.btn-outline-primary { --bs-btn-border-color: rgba(167, 139, 250, 0.55); }
+.btn-outline-warning { --bs-btn-border-color: rgba(251, 191, 36, 0.5); }
 
 .btn-outline-danger {
     --bs-btn-color: var(--kk-danger);
@@ -217,7 +236,7 @@ h2.h4 { font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -0.035em; }
 
 /* ---------- Kartu ---------- */
 .card {
-    --bs-card-bg: var(--kk-surface);
+    --bs-card-bg: rgba(14, 14, 20, 0.72);
     --bs-card-border-color: var(--kk-line);
     --bs-card-border-radius: var(--kk-radius);
     --bs-card-inner-border-radius: calc(var(--kk-radius) - 1px);
@@ -232,8 +251,8 @@ h2.h4 { font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -0.035em; }
 
 .card-footer { border-top: 1px solid var(--kk-line); }
 
-article.card { transition: border-color 0.2s ease; }
-article.card:hover { border-color: var(--kk-line-strong); }
+article.card { transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; }
+article.card:hover { border-color: rgba(167, 139, 250, 0.55); }
 
 article.card h3 { font-size: 1.35rem; margin-bottom: 0.6rem; }
 
@@ -269,7 +288,8 @@ article.card h3 { font-size: 1.35rem; margin-bottom: 0.6rem; }
 
 .table tbody tr:last-child > * { border-bottom: 0; }
 .table tbody tr { transition: background-color 0.15s ease; }
-.table tbody tr:hover > * { background-color: var(--kk-surface-2); }
+.table tbody tr:hover > * { background-color: rgba(167, 139, 250, 0.07); }
+.table tbody tr:hover > *:first-child { box-shadow: inset 3px 0 0 var(--kk-accent); }
 
 /* ---------- Formulir ---------- */
 .form-label {
@@ -281,12 +301,12 @@ article.card h3 { font-size: 1.35rem; margin-bottom: 0.6rem; }
 
 .form-control,
 .form-select {
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
     border: 1px solid var(--kk-line-strong);
     border-radius: 14px;
     padding: 0.75rem 1rem;
-    transition: border-color 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.2s ease;
 }
 
 .form-control::placeholder { color: #5f5f5f; }
@@ -295,8 +315,8 @@ article.card h3 { font-size: 1.35rem; margin-bottom: 0.6rem; }
 .form-select:focus {
     background-color: #000;
     color: #fff;
-    border-color: #fff;
-    box-shadow: none;
+    border-color: var(--kk-accent);
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.18);
 }
 
 .form-select {
@@ -357,7 +377,7 @@ code {
 
 /* ---------- Aksesibilitas ---------- */
 :focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid var(--kk-accent-2);
     outline-offset: 3px;
 }
 
@@ -373,4 +393,227 @@ code {
     main.container { padding-top: 2rem !important; }
     .table > :not(caption) > * > * { padding: 0.85rem 0.9rem; }
     .card { --bs-card-spacer-x: 1.15rem; --bs-card-spacer-y: 1.15rem; }
+}
+
+/* =========================================================
+   LAPISAN TAMPILAN v2 — latar hitam + aksen gradien + glow
+   ========================================================= */
+
+/* ---------- Latar: hitam dengan cahaya halus di sudut ---------- */
+body {
+    position: relative;
+    min-height: 100vh;
+    background-color: #000;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(60rem 36rem at 12% -8%, rgba(139, 92, 246, 0.20), transparent 60%),
+        radial-gradient(48rem 30rem at 100% 0%, rgba(34, 211, 238, 0.13), transparent 60%),
+        radial-gradient(40rem 26rem at 50% 120%, rgba(96, 165, 250, 0.10), transparent 60%);
+}
+
+/* Scrollbar gelap */
+* { scrollbar-width: thin; scrollbar-color: #2a2a35 #000; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 10px; border: 2px solid #000; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a48; }
+
+/* ---------- Animasi masuk halaman ---------- */
+@keyframes kk-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+}
+
+main.container > * { animation: kk-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+main.container > *:nth-child(2) { animation-delay: 0.06s; }
+main.container > *:nth-child(3) { animation-delay: 0.12s; }
+main.container > *:nth-child(4) { animation-delay: 0.18s; }
+
+/* ---------- Judul hero bergradien ---------- */
+.display-5 {
+    background: linear-gradient(180deg, #ffffff 25%, #b9a6ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h1.h3 {
+    background: linear-gradient(90deg, #ffffff 40%, #c4b5fd 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Navbar: tautan aktif ---------- */
+.navbar-brand::before {
+    content: '';
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-right: 0.55rem;
+    border-radius: 50%;
+    background: var(--kk-grad);
+    box-shadow: 0 0 14px var(--kk-glow);
+    vertical-align: baseline;
+}
+
+.navbar .nav-link.active {
+    color: #fff !important;
+    background: rgba(167, 139, 250, 0.14);
+    box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.35);
+}
+
+@media (max-width: 991.98px) {
+    .navbar .nav-link.active { background: transparent; box-shadow: none; color: var(--kk-accent) !important; }
+}
+
+/* ---------- Badge hero (pil dengan titik bercahaya) ---------- */
+.badge.text-bg-success {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-color: rgba(167, 139, 250, 0.4);
+    background: rgba(167, 139, 250, 0.08) !important;
+}
+
+.badge.text-bg-success::before {
+    content: '';
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--kk-accent-2);
+    box-shadow: 0 0 10px var(--kk-accent-2);
+}
+
+/* ---------- Gambar hero ---------- */
+.img-fluid {
+    border-color: rgba(167, 139, 250, 0.25);
+    box-shadow: 0 0 90px -20px var(--kk-glow) !important;
+}
+
+/* ---------- Kartu program & statistik ---------- */
+article.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 50px -22px var(--kk-glow) !important;
+}
+
+article.card .badge { color: var(--kk-accent) !important; border-color: rgba(167, 139, 250, 0.35); }
+
+/* Angka statistik beranda */
+.card .display-6 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    letter-spacing: -0.05em;
+    background: var(--kk-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card .text-secondary.small { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem !important; }
+
+/* Kartu form/tabel: garis atas bergradien tipis */
+.card.shadow-sm, .card:has(> .table-responsive), .card:has(.table-responsive) {
+    background-image: linear-gradient(180deg, rgba(167, 139, 250, 0.06), transparent 120px);
+}
+
+/* ---------- Status berwarna ---------- */
+.kk-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: var(--kk-pill);
+    border: 1px solid var(--kk-line-strong);
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.kk-status::before {
+    content: '';
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.kk-status-open       { color: var(--kk-ok);     border-color: rgba(94, 224, 138, 0.4);  background: rgba(94, 224, 138, 0.07); }
+.kk-status-closed     { color: var(--kk-danger); border-color: rgba(255, 107, 107, 0.4); background: rgba(255, 107, 107, 0.07); }
+.kk-status-draft      { color: var(--kk-warn);   border-color: rgba(251, 191, 36, 0.4);  background: rgba(251, 191, 36, 0.07); }
+.kk-status-registered { color: var(--kk-accent-2); border-color: rgba(34, 211, 238, 0.4); background: rgba(34, 211, 238, 0.07); }
+
+/* ---------- Pagination bertema gelap ---------- */
+.pagination {
+    --bs-pagination-color: #fff;
+    --bs-pagination-bg: transparent;
+    --bs-pagination-border-color: var(--kk-line);
+    --bs-pagination-hover-color: #fff;
+    --bs-pagination-hover-bg: rgba(167, 139, 250, 0.14);
+    --bs-pagination-hover-border-color: rgba(167, 139, 250, 0.5);
+    --bs-pagination-focus-color: #fff;
+    --bs-pagination-focus-bg: rgba(167, 139, 250, 0.14);
+    --bs-pagination-focus-box-shadow: none;
+    --bs-pagination-active-color: #000;
+    --bs-pagination-active-bg: #a78bfa;
+    --bs-pagination-active-border-color: transparent;
+    --bs-pagination-disabled-color: #55555f;
+    --bs-pagination-disabled-bg: transparent;
+    --bs-pagination-disabled-border-color: var(--kk-line);
+    --bs-pagination-border-radius: var(--kk-pill);
+    gap: 0.3rem;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.pagination .page-link {
+    border-radius: var(--kk-pill) !important;
+    min-width: 2.4rem;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.pagination .page-item.active .page-link {
+    background-image: var(--kk-grad);
+    font-weight: 600;
+    box-shadow: 0 6px 20px -8px var(--kk-glow);
+}
+
+/* Teks info "Menampilkan x-y dari z" */
+nav[aria-label*='agination'] p,
+.small.text-muted { color: var(--kk-muted) !important; }
+
+/* ---------- Alert: sedikit bercahaya ---------- */
+.alert-success { box-shadow: 0 0 40px -22px rgba(94, 224, 138, 0.6); }
+.alert-danger  { box-shadow: 0 0 40px -22px rgba(255, 107, 107, 0.6); }
+
+#availability.alert-success::before { content: '● '; color: var(--kk-ok); }
+#availability.alert-danger::before  { content: '● '; color: var(--kk-danger); }
+
+/* ---------- Footer kartu & daftar detail ---------- */
+.card-footer { background: rgba(255, 255, 255, 0.015); }
+
+dl.row dt { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.78rem; padding-top: 1.2rem; }
+
+/* ---------- Pencarian: ikon kaca pembesar ---------- */
+input[type='search'].form-control {
+    padding-left: 2.75rem;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%239a9a9a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='11' cy='11' r='7'/%3e%3cpath d='m20 20-3.5-3.5'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: 1rem center;
+}
+
+/* ---------- Cetak: kembali ke latar putih ---------- */
+@media print {
+    body::before { display: none; }
+    body { background: #fff; color: #000; }
 }

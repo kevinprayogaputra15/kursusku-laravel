@@ -16,20 +16,20 @@
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Beranda</a>
+                    <a @class(['nav-link', 'active' => request()->routeIs('home')])
+                       href="{{ route('home') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('courses.index') }}">Daftar Kursus</a>
+                    <a @class(['nav-link', 'active' => request()->routeIs('courses.*')])
+                       href="{{ route('courses.index') }}">Daftar Kursus</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('enrollments.create') }}">
-                        Pendaftaran
-                    </a>
+                    <a @class(['nav-link', 'active' => request()->routeIs('enrollments.create', 'enrollments.store')])
+                       href="{{ route('enrollments.create') }}">Pendaftaran</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('enrollments.index') }}">
-                        Laporan Enrollment
-                    </a>
+                    <a @class(['nav-link', 'active' => request()->routeIs('enrollments.index')])
+                       href="{{ route('enrollments.index') }}">Laporan Enrollment</a>
                 </li>
             </ul>
         </div>
