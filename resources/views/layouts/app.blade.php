@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
 <body>
     @include('partials.navbar')
@@ -26,6 +27,7 @@
         @yield('content')
     </main>
 
+    <script src="{{ asset('js/auth.js') }}" defer></script>
     @stack('scripts')
 </body>
 </html>

@@ -14,7 +14,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
                 <li class="nav-item">
                     <a @class(['nav-link', 'active' => request()->routeIs('home')])
                        href="{{ route('home') }}">Beranda</a>
@@ -31,6 +31,25 @@
                     <a @class(['nav-link', 'active' => request()->routeIs('enrollments.index')])
                        href="{{ route('enrollments.index') }}">Laporan Enrollment</a>
                 </li>
+
+                @auth
+                    <li class="nav-item">
+                        <a @class(['nav-link', 'active' => request()->routeIs('dashboard')])
+                           href="{{ route('dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                Keluar ({{ \Illuminate\Support\Str::limit(auth()->user()->name, 14) }})
+                            </button>
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                        <a href="{{ route('login') }}" class="btn btn-sm btn-primary">Masuk</a>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>

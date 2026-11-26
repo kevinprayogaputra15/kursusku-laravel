@@ -1,0 +1,111 @@
+/* KursusKu — halaman login, avatar profil, chip user di navbar.
+   Memakai variabel tema dari app.css; nilai cadangan disediakan. */
+
+/* ---------- Avatar / logo profil ---------- */
+.kk-avatar {
+    --size: var(--kk-avatar-size, 40px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: var(--kk-grad, linear-gradient(135deg, #a78bfa, #60a5fa 55%, #22d3ee));
+    color: #000;
+    font-weight: 700;
+    font-size: calc(var(--size) * 0.38);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    user-select: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08), 0 8px 28px -8px var(--kk-glow, rgba(139, 92, 246, .45));
+}
+
+/* ---------- Chip user di navbar ---------- */
+.kk-user-chip { display: inline-flex; align-items: center; gap: 0.55rem; }
+.kk-user-chip .kk-avatar { box-shadow: none; }
+.navbar .dropdown-menu {
+    background: var(--kk-surface-2, #141414);
+    border: 1px solid var(--kk-line, rgba(255, 255, 255, .14));
+    border-radius: 16px;
+    padding: 0.4rem;
+    min-width: 12rem;
+}
+.navbar .dropdown-item { border-radius: 10px; padding: 0.5rem 0.8rem; }
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus { background: rgba(255, 255, 255, .08); }
+.navbar .dropdown-divider { border-color: var(--kk-line, rgba(255, 255, 255, .14)); }
+
+/* ---------- Kartu login ---------- */
+.auth-wrap { display: flex; justify-content: center; padding: 1rem 0 2rem; }
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 2.25rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--kk-line, rgba(255, 255, 255, .14));
+    border-radius: var(--kk-radius, 20px);
+    box-shadow: 0 30px 80px -40px var(--kk-glow, rgba(139, 92, 246, .45));
+}
+
+.auth-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 1.25rem;
+    border-radius: 16px;
+    background: var(--kk-grad, linear-gradient(135deg, #a78bfa, #60a5fa 55%, #22d3ee));
+    box-shadow: 0 10px 30px -10px var(--kk-glow, rgba(139, 92, 246, .45));
+}
+
+.auth-title { font-size: 2rem !important; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 0.4rem; }
+.auth-sub { color: var(--kk-muted, #9a9a9a); margin-bottom: 1.75rem; }
+.auth-foot { margin: 1.5rem 0 0; text-align: center; font-size: 0.92rem; }
+
+.auth-card .form-label { font-size: 0.9rem; font-weight: 500; color: var(--kk-muted, #9a9a9a); }
+
+/* ---------- Tombol mata (hiding password) ---------- */
+.password-field { position: relative; }
+.password-field .form-control { padding-right: 3rem; }
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--kk-muted, #9a9a9a);
+    cursor: pointer;
+}
+.password-toggle:hover { color: #fff; background: rgba(255, 255, 255, .08); }
+.password-toggle:focus-visible { outline: 2px solid var(--kk-accent, #a78bfa); outline-offset: 1px; }
+.password-toggle .icon-eye-off { display: none; }
+.password-toggle.is-visible .icon-eye { display: none; }
+.password-toggle.is-visible .icon-eye-off { display: inline; }
+
+/* ---------- Halaman Profil Saya ---------- */
+.profile-card { display: flex; flex-direction: column; align-items: flex-start; }
+.profile-meta dt {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--kk-muted, #9a9a9a);
+    font-weight: 500;
+}
+.profile-meta dd { margin: 0 0 1rem; font-size: 1.05rem; }
+.profile-meta dd:last-child { margin-bottom: 0; }
+
+@media (max-width: 480px) {
+    .auth-card { padding: 1.75rem 1.25rem; }
+}
